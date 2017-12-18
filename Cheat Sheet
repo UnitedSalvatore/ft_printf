@@ -1,0 +1,18 @@
+Mandatory part
+[] • You have to manage the following conversions: sSpdDioOuUxXcC
+		[] • diouxX
+		[] • DOU 
+		[] • sS 
+		[] • cC 
+		[] • p 
+[] • You must manage %%
+[] • You must manage the flags #0-+ and space
+[] • You must manage the minimum field-width
+[] • You must manage the precision
+[] • You must manage the flags hh, h, l, ll, j, et z.
+		[] • hh
+		[] • h 
+		[] • ll 
+		[] • l 
+		[] • j 
+		[] • z 

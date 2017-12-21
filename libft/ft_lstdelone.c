@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/05 18:33:50 by ypikul           ###   ########.fr       */
+/*   Created: 2017/10/25 09:36:24 by ypikul            #+#    #+#             */
+/*   Updated: 2017/10/26 21:56:46 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <stdlib.h>
+#include "libft.h"
 
-typedef struct	s_arg
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	int		minus_sign_flag;
-	int		zero_flag;
-	int		plus_flag;
-}				t_arg;
-
-int		ft_printf(const char *format, ...);
-
-#endif
+	if (alst == NULL || *alst == NULL)
+		return ;
+	if (del != NULL)
+		del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
+}

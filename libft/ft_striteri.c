@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/05 18:33:50 by ypikul           ###   ########.fr       */
+/*   Created: 2017/10/25 02:11:18 by ypikul            #+#    #+#             */
+/*   Updated: 2017/10/25 02:11:20 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-typedef struct	s_arg
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int		minus_sign_flag;
-	int		zero_flag;
-	int		plus_flag;
-}				t_arg;
+	unsigned int i;
 
-int		ft_printf(const char *format, ...);
-
-#endif
+	i = 0;
+	if (s && f)
+		while (*s != '\0')
+			f(i++, s++);
+}

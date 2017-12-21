@@ -3,24 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2017/12/18 18:45:19 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/05 17:47:17 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+static int	ft_vprintf(const char *format, va_list *arg, s)
+{
+	while (*format)
+	{
+		
+	}
+}
+
+int			ft_printf(const char *format, ...)
 {
 	va_list	arg;
-	int		done;
+	size_t	done;
 
+	if (format == NULL)
+		return (-1);
+	done = 0;
 	va_start(arg, format);
-	done = vfprintf(stdout, format, arg);
+	done = ft_vprintf(format, &arg, &done);
 	va_end(arg);
 	return (done);
 }

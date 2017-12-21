@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/05 18:33:50 by ypikul           ###   ########.fr       */
+/*   Created: 2017/10/28 18:30:00 by ypikul            #+#    #+#             */
+/*   Updated: 2017/10/29 14:56:30 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-typedef struct	s_arg
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	int		minus_sign_flag;
-	int		zero_flag;
-	int		plus_flag;
-}				t_arg;
-
-int		ft_printf(const char *format, ...);
-
-#endif
+	if (alst == NULL || new == NULL)
+		return ;
+	new->next = *alst;
+	*alst = new;
+}

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/05 18:33:50 by ypikul           ###   ########.fr       */
+/*   Created: 2017/10/25 01:53:04 by ypikul            #+#    #+#             */
+/*   Updated: 2017/10/25 01:53:07 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-typedef struct	s_arg
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int		minus_sign_flag;
-	int		zero_flag;
-	int		plus_flag;
-}				t_arg;
-
-int		ft_printf(const char *format, ...);
-
-#endif
+	while (*s1 == *s2++)
+		if (*s1++ == '\0')
+			return (0);
+	return (*(unsigned char *)s1 - *(unsigned char *)--s2);
+}

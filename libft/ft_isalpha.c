@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/05 18:33:50 by ypikul           ###   ########.fr       */
+/*   Created: 2017/10/25 01:54:07 by ypikul            #+#    #+#             */
+/*   Updated: 2017/10/25 01:54:08 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-typedef struct	s_arg
+int		ft_isalpha(int c)
 {
-	int		minus_sign_flag;
-	int		zero_flag;
-	int		plus_flag;
-}				t_arg;
-
-int		ft_printf(const char *format, ...);
-
-#endif
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ? 1024 : 0);
+}

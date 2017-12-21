@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/05 18:33:50 by ypikul           ###   ########.fr       */
+/*   Created: 2017/10/25 01:40:13 by ypikul            #+#    #+#             */
+/*   Updated: 2017/10/25 01:40:16 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <stdlib.h>
+#include "libft.h"
 
-typedef struct	s_arg
+char	*ft_strdup(const char *s1)
 {
-	int		minus_sign_flag;
-	int		zero_flag;
-	int		plus_flag;
-}				t_arg;
+	char *s2;
 
-int		ft_printf(const char *format, ...);
-
-#endif
+	s2 = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (s2 == NULL)
+		return (NULL);
+	ft_strcpy(s2, s1);
+	return (s2);
+}

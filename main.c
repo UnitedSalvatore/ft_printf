@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:15:16 by ypikul            #+#    #+#             */
-/*   Updated: 2018/01/26 17:50:15 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/08 18:24:29 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(void)
 {
-	//setlocale (LC_ALL, "");
-	printf("%i\n", printf("%i%i\n", 42));
+	setlocale (LC_ALL, "");
+	printf("%S", L"Тест");
 	return (0);
 }

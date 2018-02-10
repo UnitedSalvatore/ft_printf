@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/08 21:09:41 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/10 17:30:26 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ typedef struct	s_arg
 	int		left_pad;
 
 	char	buf[P_BUFF_SIZE];
-	size_t	size;
+	int		size;
+	int		written;
 }				t_arg;
 
 int		ft_printf(const char *format, ...);
+void	ft_add_to_buf(const char c, t_arg *spec);
 
 #endif

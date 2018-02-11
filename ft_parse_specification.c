@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_to_buf.c                                    :+:      :+:    :+:   */
+/*   ft_parse_specification.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/06 12:41:15 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/11 17:27:52 by ypikul           ###   ########.fr       */
+/*   Created: 2018/02/11 21:32:34 by ypikul            #+#    #+#             */
+/*   Updated: 2018/02/11 21:45:18 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf.h"
+#include "libft.h"
 
-static void	ft_putbuff(struct s_buffer *buffer)
+char				*ft_parse_flags(char *format, t_arg *spec)
 {
-			write(STDOUT_FILENO, buffer->buf, buffer->size);
-			buffer->written += buffer->size;
-			buffer->size = 0;
-}
-
-void		ft_add_to_buf(const char c, struct s_buffer *buffer)
-{
-	if (c)
+	while(ft_strchr("-0+ #", *str))
 	{
-		buffer->buf[buffer->size] = c;
-		++buffer->size;
-		if (buffer->size == P_BUFF_SIZE)
-			ft_putbuff(buffer);
+		if (*str == '-')
+			spec->minus = 1;
+		else if (*str == '0')
+			spec->zero = 1;
+		else if (*str == '+')
+			spec->plus = 1;
+		else if (*str == ' ')
+			spec->space = 1;
+		else if (*str == '#')
+			spec->hash = 1;
+		++str;
 	}
-	else
-		ft_putbuff(buffer);
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:15:16 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/11 16:38:19 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/11 19:33:09 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(void)
 	//setlocale (LC_ALL, "");
 	i = printf("%#X\n", 0xFF);
 	printf("%d\n", i);
-	j = ft_printf("Test\n");
+	j = ft_printf("Test\n%");
 	printf("%d\n", j);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/11 00:46:24 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/11 21:35:11 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-// static t_arg	*ft_default_arg(t_arg *spec)
-// {
-
-// }
-
-static void		ft_parse_arg(const char **format, va_list *arg, t_arg *spec)
+static t_arg	*ft_default_arg(t_arg *spec)
 {
-	++*format;
-	arg = (void *)arg;
-	spec = (void *)spec;
+	return (spec);
+}
+
+static char		*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
+{
+
+	format = ft_parse_flags(format, spec);
+	format = ft_parse_min_width(format, arg, spec);
+	format = ft_parse_precision(format, arg, spec);
+	format = ft_parse_size(format, arg, spec);
+	format = ft_handle_conversion(format, arg, spec);
+	return (format);
 }
 
 static int		ft_vprintf(const char *format, va_list *arg, t_arg *spec)
@@ -32,15 +36,15 @@ static int		ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 	{
 		if (*format == '%')
 		{
-	//		ft_default_arg(spec);
-			ft_parse_arg(&format, arg, spec);
+			ft_default_arg(spec);
+			format = ft_parse_arg(++format, arg, spec);
 		}
 		else
-			ft_add_to_buf(*format, spec);
+			ft_add_to_buf(*format, &spec->buffer);
 		++format;
 	}
-	ft_add_to_buf('\0', spec);
-	return (spec->written);
+	ft_add_to_buf('\0', &spec->buffer);
+	return (spec->buffer.written);
 }
 
 int				ft_printf(const char *format, ...)

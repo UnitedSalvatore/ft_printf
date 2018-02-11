@@ -3,19 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <ypikul@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:15:16 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/08 18:24:29 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/11 16:38:19 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <locale.h>
+#include "ft_printf.h"
+#include "libft.h"
 
 int main(void)
 {
-	setlocale (LC_ALL, "");
-	printf("%S", L"Тест");
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	//setlocale (LC_ALL, "");
+	i = printf("%#X\n", 0xFF);
+	printf("%d\n", i);
+	j = ft_printf("Test\n");
+	printf("%d\n", j);
 	return (0);
 }

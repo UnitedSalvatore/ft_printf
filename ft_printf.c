@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
+/*   By: ypikul <ypikul@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/10 17:40:18 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/11 00:46:24 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static t_arg	*ft_dafeaul_arg(t_arg *spec)
-{
+// static t_arg	*ft_default_arg(t_arg *spec)
+// {
 
-}
+// }
 
 static void		ft_parse_arg(const char **format, va_list *arg, t_arg *spec)
 {
@@ -32,7 +32,7 @@ static int		ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 	{
 		if (*format == '%')
 		{
-			ft_default_arg(spec);
+	//		ft_default_arg(spec);
 			ft_parse_arg(&format, arg, spec);
 		}
 		else

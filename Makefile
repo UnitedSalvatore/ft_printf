@@ -1,5 +1,8 @@
 NAME = libftprintf.a
 
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
 FILENAMES = ft_add_to_buf.c \
 			ft_printf.c \
 			main.c
@@ -10,21 +13,25 @@ OBJECTS = $(addprefix ./obj/, $(FILENAMES:.c=.o))
 
 CC = gcc
 FLAGS ?= -Wall -Wextra -Werror
-FLAGS += -I./ -I./libft/
+FLAGS += -I./libft/
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	$(CC) -o $@ $(FLAGS) $(OBJECTS)
+$(NAME): $(LIBFT) $(OBJECTS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)/
 
 obj:
 	mkdir obj/
 
 obj/%.o: ./%.c | obj
-	$(CC) -c $(FLAGS) $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf obj/
+	make -C $(LIBFT_DIR)/ fclean
 
 fclean: clean
 	rm -f $(NAME)

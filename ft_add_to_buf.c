@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:41:15 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/11 17:27:52 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/12 20:44:57 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static void	ft_putbuff(struct s_buffer *buffer)
 {
-			write(STDOUT_FILENO, buffer->buf, buffer->size);
-			buffer->written += buffer->size;
-			buffer->size = 0;
+	write(STDOUT_FILENO, buffer->buf, buffer->size);
+	buffer->written += buffer->size;
+	buffer->size = 0;
 }
 
 void		ft_add_to_buf(const char c, struct s_buffer *buffer)
@@ -30,5 +30,6 @@ void		ft_add_to_buf(const char c, struct s_buffer *buffer)
 			ft_putbuff(buffer);
 	}
 	else
+		
 		ft_putbuff(buffer);
 }

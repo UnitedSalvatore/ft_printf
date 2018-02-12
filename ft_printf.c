@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/11 21:35:11 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/12 20:59:33 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static t_arg	*ft_default_arg(t_arg *spec)
+static const char	*\
+ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
 {
-	return (spec);
-}
-
-static char		*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
-{
-
 	format = ft_parse_flags(format, spec);
 	format = ft_parse_min_width(format, arg, spec);
 	format = ft_parse_precision(format, arg, spec);
-	format = ft_parse_size(format, arg, spec);
+	format = ft_parse_size(format, spec);
 	format = ft_handle_conversion(format, arg, spec);
 	return (format);
 }
 
-static int		ft_vprintf(const char *format, va_list *arg, t_arg *spec)
+static int			\
+ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 {
 	while (*format)
 	{
@@ -47,7 +43,8 @@ static int		ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 	return (spec->buffer.written);
 }
 
-int				ft_printf(const char *format, ...)
+int					\
+ft_printf(const char *format, ...)
 {
 	va_list	arg;
 	t_arg	spec;

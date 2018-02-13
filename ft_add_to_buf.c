@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:41:15 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/12 20:44:57 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/13 15:31:18 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ void		ft_add_to_buf(const char c, struct s_buffer *buffer)
 			ft_putbuff(buffer);
 	}
 	else
-		
 		ft_putbuff(buffer);
 }

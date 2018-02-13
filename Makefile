@@ -3,7 +3,10 @@ NAME = libftprintf.a
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-FILENAMES = ft_add_to_buf.c \
+FILENAMES = ft_print_specification.c \
+			ft_handle_conversion.c \
+			ft_parse_specification.c \
+			ft_add_to_buf.c \
 			ft_printf.c \
 			main.c
 
@@ -12,7 +15,7 @@ SOURCES = $(addprefix ./, $(FILENAMES))
 OBJECTS = $(addprefix ./obj/, $(FILENAMES:.c=.o))
 
 CC = gcc
-FLAGS ?= -Wall -Wextra -Werror
+#FLAGS ?= -Wall -Wextra -Werror
 FLAGS += -I./libft/
 
 all: $(NAME)

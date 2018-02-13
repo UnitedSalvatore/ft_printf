@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/12 20:59:33 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/13 18:07:51 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,34 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static const char	*\
-ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
+static t_arg		*ft_default_arg(t_arg *spec)
+{
+	spec->minus = 0;
+	spec->zero = 0;
+	spec->plus = 0;
+	spec->space = 0;
+	spec->hash = 0;
+	spec->is_min_width = 0;
+	spec->min_width = 0;
+	spec->is_precision = 0;
+	spec->precision = 0;
+	spec->conversion_letter = '\0';
+	spec->size = NONE;
+	return (spec);
+}
+
+static const char	*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
 {
 	format = ft_parse_flags(format, spec);
 	format = ft_parse_min_width(format, arg, spec);
 	format = ft_parse_precision(format, arg, spec);
 	format = ft_parse_size(format, spec);
 	format = ft_handle_conversion(format, arg, spec);
+	ft_print_specification(spec);
 	return (format);
 }
 
-static int			\
-ft_vprintf(const char *format, va_list *arg, t_arg *spec)
+static int			ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 {
 	while (*format)
 	{
@@ -43,8 +58,7 @@ ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 	return (spec->buffer.written);
 }
 
-int					\
-ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
 	va_list	arg;
 	t_arg	spec;

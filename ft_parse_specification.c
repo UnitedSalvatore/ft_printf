@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 21:32:34 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/12 19:45:44 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/13 18:06:13 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-char	*ft_parse_flags(const char *format, t_arg *spec)
+const char	*ft_parse_flags(const char *format, t_arg *spec)
 {
-	while(ft_strchr("-0+ #", *str))
+	while(ft_strchr("-0+ #", *format))
 	{
-		if (*str == '-')
+		if (*format == '-')
 			spec->minus = 1;
-		else if (*str == '0')
+		else if (*format == '0')
 			spec->zero = 1;
-		else if (*str == '+')
+		else if (*format == '+')
 			spec->plus = 1;
-		else if (*str == ' ')
+		else if (*format == ' ')
 			spec->space = 1;
-		else if (*str == '#')
+		else if (*format == '#')
 			spec->hash = 1;
-		++str;
+		++format;
 	}
-	return (str);
+	return (format);
 }
 
-char	*ft_parse_min_width(const char *format, va_list *arg, t_arg *spec)
+const char	*ft_parse_min_width(const char *format, va_list *arg, t_arg *spec)
 {
 	if (*format == '*')
 	{
@@ -47,11 +47,11 @@ char	*ft_parse_min_width(const char *format, va_list *arg, t_arg *spec)
 	}
 	else
 		while (ft_isdigit(*format))
-			spec->min_width = spec->min_width * 10 + (*format++ - '0')
+			spec->min_width = spec->min_width * 10 + (*format++ - '0');
 	return (format);
 }
 
-char	*ft_parse_precision(const char *format, va_list *arg, t_arg *spec)
+const char	*ft_parse_precision(const char *format, va_list *arg, t_arg *spec)
 {
 	spec->precision = 6;
 	if (*format != '.')
@@ -72,7 +72,7 @@ char	*ft_parse_precision(const char *format, va_list *arg, t_arg *spec)
 	return (format);
 }
 
-char	*ft_parse_size(const char *format, t_arg *spec)
+const char	*ft_parse_size(const char *format, t_arg *spec)
 {
 	while (ft_strchr("hljz", *format))
 	{
@@ -91,4 +91,13 @@ char	*ft_parse_size(const char *format, t_arg *spec)
 		++format;
 	}
 	return (format);
+}
+
+const char	*ft_parse_conversion(const char *format, t_arg *spec)
+{
+
+	if (ft_strchr("sSpdDioOuUxXcC", *format))
+	{
+
+	}
 }

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_conversion.c                             :+:      :+:    :+:   */
+/*   ft_print_specification.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/12 19:32:20 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/13 18:07:47 by ypikul           ###   ########.fr       */
+/*   Created: 2018/02/13 13:19:28 by ypikul            #+#    #+#             */
+/*   Updated: 2018/02/13 13:23:41 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-const char	*ft_handle_conversion(const char *format, va_list *arg, t_arg *spec)
+void	ft_print_specification(t_arg *spec)
 {
-	
-	if (ft_strchr("DOUCS", *format))
-		spec->size = l;
-
-	return (format);
+	printf("spec->minus |%i|\n", spec->minus);
+	printf("spec->zero |%i|\n", spec->zero);
+	printf("spec->plus |%i|\n", spec->plus);
+	printf("spec->space |%i|\n", spec->space);
+	printf("spec->hash |%i|\n", spec->hash);
+	\
+	printf("spec->min_width |%i|\n", spec->min_width);
+	printf("spec->precision |%i|\n", spec->precision);
+	printf("spec->size |%i|\n", spec->size);
 }
+	

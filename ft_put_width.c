@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_put_width.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 00:15:16 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/15 09:45:59 by ypikul           ###   ########.fr       */
+/*   Created: 2018/02/15 03:31:40 by ypikul            #+#    #+#             */
+/*   Updated: 2018/02/15 05:54:12 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <locale.h>
 #include "ft_printf.h"
-#include "libft.h"
 
-int	main(void)
+void	ft_put_width(int data_size, t_arg *spec)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	setlocale(LC_ALL, "");
-	i = printf("%C\n", L'Ш');
-	printf("%d\n", i);
-	j = ft_printf("%C\n", L'Ш');
-	printf("%d\n", j);
-	return (0);
+	if (spec->zero)
+		while (spec->min_width > data_size++)
+			ft_add_to_buf('0', &spec->buffer);
+	else
+		while (spec->min_width > data_size++)
+			ft_add_to_buf(' ', &spec->buffer);
 }

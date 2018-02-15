@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 21:32:34 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/13 18:06:13 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/15 06:20:37 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 const char	*ft_parse_flags(const char *format, t_arg *spec)
 {
-	while(ft_strchr("-0+ #", *format))
+	while (*format && ft_strchr("-0+ #", *format))
 	{
 		if (*format == '-')
 			spec->minus = 1;
@@ -30,6 +30,8 @@ const char	*ft_parse_flags(const char *format, t_arg *spec)
 			spec->hash = 1;
 		++format;
 	}
+	if (spec->minus)
+		spec->zero = 0;
 	return (format);
 }
 
@@ -53,14 +55,14 @@ const char	*ft_parse_min_width(const char *format, va_list *arg, t_arg *spec)
 
 const char	*ft_parse_precision(const char *format, va_list *arg, t_arg *spec)
 {
-	spec->precision = 6;
 	if (*format != '.')
 		return (format);
+	spec->is_precision = 1;
 	if (*++format == '*')
 	{
 		spec->precision = va_arg(*arg, int);
 		if (spec->precision < 0)
-			spec->precision = 6;
+			spec->is_precision = 0;
 		++format;
 	}
 	else
@@ -74,14 +76,20 @@ const char	*ft_parse_precision(const char *format, va_list *arg, t_arg *spec)
 
 const char	*ft_parse_size(const char *format, t_arg *spec)
 {
-	while (ft_strchr("hljz", *format))
+	while (*format && ft_strchr("hljz", *format))
 	{
 		if (*format == 'h' && *(format + 1) == 'h')
+		{
 			spec->size = HH;
+			++format;
+		}
+		else if (*format == 'l' && *(format + 1) == 'l')
+		{
+			spec->size = LL;
+			++format;
+		}
 		else if (*format == 'h')
 			spec->size = H;
-		else if (*format == 'l' && *(format + 1) == 'l')
-			spec->size = LL;
 		else if (*format == 'l')
 			spec->size = L;
 		else if (*format == 'j')
@@ -91,13 +99,4 @@ const char	*ft_parse_size(const char *format, t_arg *spec)
 		++format;
 	}
 	return (format);
-}
-
-const char	*ft_parse_conversion(const char *format, t_arg *spec)
-{
-
-	if (ft_strchr("sSpdDioOuUxXcC", *format))
-	{
-
-	}
 }

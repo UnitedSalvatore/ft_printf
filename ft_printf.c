@@ -6,13 +6,14 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/13 18:07:51 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/15 10:04:19 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 #include "libft.h"
+#include <unistd.h>
 
 static t_arg		*ft_default_arg(t_arg *spec)
 {
@@ -21,11 +22,9 @@ static t_arg		*ft_default_arg(t_arg *spec)
 	spec->plus = 0;
 	spec->space = 0;
 	spec->hash = 0;
-	spec->is_min_width = 0;
 	spec->min_width = 0;
 	spec->is_precision = 0;
 	spec->precision = 0;
-	spec->conversion_letter = '\0';
 	spec->size = NONE;
 	return (spec);
 }
@@ -37,11 +36,11 @@ static const char	*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
 	format = ft_parse_precision(format, arg, spec);
 	format = ft_parse_size(format, spec);
 	format = ft_handle_conversion(format, arg, spec);
-	ft_print_specification(spec);
+	//ft_print_specification(spec);
 	return (format);
 }
 
-static int			ft_vprintf(const char *format, va_list *arg, t_arg *spec)
+static size_t		ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 {
 	while (*format)
 	{
@@ -51,10 +50,11 @@ static int			ft_vprintf(const char *format, va_list *arg, t_arg *spec)
 			format = ft_parse_arg(++format, arg, spec);
 		}
 		else
-			ft_add_to_buf(*format, &spec->buffer);
-		++format;
+			ft_add_to_buf(*format++, &spec->buffer);
 	}
-	ft_add_to_buf('\0', &spec->buffer);
+	write(STDOUT_FILENO, spec->buffer.buf, spec->buffer.size);
+	spec->buffer.written += spec->buffer.size;
+	spec->buffer.size = 0;
 	return (spec->buffer.written);
 }
 
@@ -68,7 +68,7 @@ int					ft_printf(const char *format, ...)
 		return (-1);
 	va_start(arg, format);
 	ft_memset(&spec, 0, sizeof(spec));
-	done = ft_vprintf(format, &arg, &spec);
+	done = (int)ft_vprintf(format, &arg, &spec);
 	va_end(arg);
 	return (done);
 }

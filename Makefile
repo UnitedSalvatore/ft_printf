@@ -3,25 +3,27 @@ NAME = libftprintf.a
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-FILENAMES = ft_print_specification.c \
+FILENAMES = ft_handle_char.c \
+			\
+			ft_print_specification.c \
 			ft_handle_conversion.c \
 			ft_parse_specification.c \
 			ft_add_to_buf.c \
-			ft_printf.c \
-			main.c
-
+			ft_put_width.c \
+			ft_printf.c
 
 SOURCES = $(addprefix ./, $(FILENAMES))
 OBJECTS = $(addprefix ./obj/, $(FILENAMES:.c=.o))
 
 CC = gcc
-#FLAGS ?= -Wall -Wextra -Werror
+FLAGS ?= -g #-Wall -Wextra -Werror #-Wconversion
 FLAGS += -I./libft/
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
+	ar rc $(NAME) $(OBJECTS) $(LIBFT_DIR)/obj/*.o
+	ranlib $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)/
@@ -40,5 +42,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+main: $(NAME)
+	$(CC) $(FLAGS) main.c $(NAME) $(LIBFT)
 
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:19:28 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/13 13:23:41 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/15 00:48:51 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_print_specification(t_arg *spec)
 	printf("spec->hash |%i|\n", spec->hash);
 	\
 	printf("spec->min_width |%i|\n", spec->min_width);
+	printf("spec->is_precision |%i|\n", spec->is_precision);
 	printf("spec->precision |%i|\n", spec->precision);
 	printf("spec->size |%i|\n", spec->size);
 }
-	

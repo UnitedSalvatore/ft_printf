@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/16 21:22:50 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/17 18:53:37 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ const char			*
 ft_handle_conversion(const char *format, va_list *arg, t_arg *spec);
 
 void				ft_handle_char(const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_int(const char *format, va_list *arg, t_arg *spec);
 
 void				ft_print_specification(t_arg *spec);
 

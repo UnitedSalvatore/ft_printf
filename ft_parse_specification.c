@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 21:32:34 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/15 06:20:37 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/17 20:06:31 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ const char	*ft_parse_flags(const char *format, t_arg *spec)
 	}
 	if (spec->minus)
 		spec->zero = 0;
+	if (spec->plus)
+		spec->space = 0;
 	return (format);
 }
 

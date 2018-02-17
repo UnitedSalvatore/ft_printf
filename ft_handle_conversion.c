@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:32:20 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/15 06:35:27 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/17 18:19:53 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static t_handler	ft_get_handler(t_handler handlers[], int num)
 	handlers[0] = 0;
 	handlers[1] = 0;
 	handlers[2] = 0;
-	handlers[3] = 0;
+	handlers[3] = &ft_handle_int;
 	handlers[4] = 0;
-	handlers[5] = 0;
+	handlers[5] = &ft_handle_int;
 	handlers[6] = 0;
 	handlers[7] = 0;
 	handlers[8] = 0;

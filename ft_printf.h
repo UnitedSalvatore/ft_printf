@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/15 06:01:07 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/16 21:22:50 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include "stdio.h"
+# include "libft.h"
 
 # define P_BUFF_SIZE 64
 # define MIN_WIDTH
@@ -33,14 +34,14 @@ struct				s_buffer
 
 typedef struct		s_arg
 {
-	int				minus;
-	int				zero;
-	int				plus;
-	int				space;
-	int				hash;
+	int				minus : 1;
+	int				zero : 1;
+	int				plus : 1;
+	int				space : 1;
+	int				hash : 1;
 	\
 	int				min_width;
-	int				is_precision;
+	int				is_precision : 1;
 	int				precision;
 	enum e_size		size;
 	\

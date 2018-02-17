@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 02:12:44 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/16 21:21:27 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/17 17:38:19 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static void	ft_putwchar(wchar_t c, struct s_buffer *buffer)
 	else if (c <= 0xFFFF)
 	{
 		ft_add_to_buf((c >> 12) | 0xE0, buffer);
-		ft_add_to_buf(((c >> 6) & 0x3F) | 0xC0, buffer);
+		ft_add_to_buf(((c >> 6) & 0x3F) | 0x80, buffer);
 		ft_add_to_buf((c & 0x3F) | 0x80, buffer);
 	}
 	else if (c <= 0x1FFFFF)
 	{
 		ft_add_to_buf((( c >> 18) | 0xF0), buffer);
-		ft_add_to_buf(((c >> 12) & 0x3F) | 0xC0, buffer);
-		ft_add_to_buf(((c >> 6) & 0x3F) | 0xC0, buffer);
+		ft_add_to_buf(((c >> 12) & 0x3F) | 0x80, buffer);
+		ft_add_to_buf(((c >> 6) & 0x3F) | 0x80, buffer);
 		ft_add_to_buf((c & 0x3F) | 0x80, buffer);
 	}
 }

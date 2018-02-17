@@ -16,7 +16,7 @@ SOURCES = $(addprefix ./, $(FILENAMES))
 OBJECTS = $(addprefix ./obj/, $(FILENAMES:.c=.o))
 
 CC = gcc
-FLAGS ?= -g -Wall -Wextra -Werror #-Wconversion
+FLAGS ?= -g #-Wall -Wextra -Werror #-Wconversion
 FLAGS += -I./libft/
 
 all: $(NAME)

@@ -5,8 +5,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 FILENAMES = ft_handle_char.c \
 			ft_handle_int.c \
+			ft_handle_num.c \
 			\
-			ft_print_specification.c \
 			ft_handle_conversion.c \
 			ft_parse_specification.c \
 			ft_add_to_buf.c \

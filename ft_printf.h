@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/17 18:53:37 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 01:27:34 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "stdio.h"
-# include "libft.h"
+# include <stdint.h>
+# include <string.h>
 
 # define P_BUFF_SIZE 64
 # define MIN_WIDTH
@@ -31,6 +31,14 @@ struct				s_buffer
 	size_t			size;
 	size_t			written;
 };
+
+typedef struct		s_num
+{
+	char			sign;
+	char			*prefix;
+	int				base;
+	int				big_char;
+}					t_num;
 
 typedef struct		s_arg
 {
@@ -53,6 +61,7 @@ typedef void		(*t_handler)(const char *, va_list*, t_arg*);
 int					ft_printf(const char *format, ...);
 void				ft_add_to_buf(const char c, struct s_buffer *buffer);
 void				ft_put_width(int data_size, t_arg *spec);
+void				ft_handle_num(t_arg *spec, uintmax_t num, t_num *prop);
 
 const char			*
 ft_parse_flags(const char *format, t_arg *spec);
@@ -65,9 +74,9 @@ ft_parse_size(const char *format, t_arg *spec);
 const char			*
 ft_handle_conversion(const char *format, va_list *arg, t_arg *spec);
 
-void				ft_handle_char(const char *format, va_list *arg, t_arg *spec);
-void				ft_handle_int(const char *format, va_list *arg, t_arg *spec);
-
-void				ft_print_specification(t_arg *spec);
+void				ft_handle_char(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_int(
+						const char *format, va_list *arg, t_arg *spec);
 
 #endif

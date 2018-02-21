@@ -6,54 +6,56 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 18:18:22 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/17 20:45:45 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 02:07:01 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdint.h>
 #include <stdarg.h>
-
-static int		ft_num_length(intmax_t num, const int base)
-{
-	size_t i;
-
-	i = 1;
-	if (num < 0)
-		i++;
-	while (num /= 10)
-		i++;
-	return (i);
-}
+#include "ft_printf.h"
 
 static intmax_t	ft_get_size(va_list *arg, enum e_size *size)
 {
+	intmax_t	num;
+
+	num = va_arg(*arg, intmax_t);
 	if (*size == HH)
-		return ((signed char)va_arg(*arg, intmax_t));
+		return ((signed char)num);
 	if (*size == H)
-		return ((short)va_arg(*arg, intmax_t));
+		return ((short)num);
 	if (*size == LL)
-		return ((long)va_arg(*arg, intmax_t));
+		return ((long)num);
 	if (*size == L)
-		return ((long long)va_arg(*arg, intmax_t));
+		return ((long long)num);
 	if (*size == J)
-		return (va_arg(*arg, intmax_t));
+		return (num);
 	if (*size == Z)
-		return ((size_t)va_arg(*arg, intmax_t));
+		return ((size_t)num);
 	else
-		return ((int)va_arg(*arg, intmax_t));
+		return ((int)num);
 }
 
 void			ft_handle_int(const char *format, va_list *arg, t_arg *spec)
 {
 	intmax_t	nbr;
-	int			size;
-	char		sign;
+	t_num		prop;
+	uintmax_t	unbr;
 
-	spec->is_precision ? spec->zero = 0 : 0;
 	nbr = ft_get_size(arg, &spec->size);
-	size = ft_num_length(nbr, 10);
-	if (spec->is_precision && spec->precision > spec->min_width)
-		spec->min_width == spec->precision;
-	if ()
+	prop.prefix = NULL;
+	prop.sign = '\0';
+	prop.base = 10;
+	prop.big_char = 0;
+	if (spec->plus)
+		prop.sign = '+';
+	else if (spec->space)
+		prop.sign = ' ';
+	if (nbr >= 0)
+		unbr = nbr;
+	else
+	{
+		unbr = -nbr;
+		prop.sign = '-';
+	}
+	ft_handle_num(spec, unbr, &prop);
 }

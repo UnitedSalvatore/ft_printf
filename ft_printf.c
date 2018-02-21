@@ -6,14 +6,14 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/15 10:04:19 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 00:26:38 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include <unistd.h>
 #include "ft_printf.h"
 #include "libft.h"
-#include <unistd.h>
 
 static t_arg		*ft_default_arg(t_arg *spec)
 {
@@ -36,7 +36,6 @@ static const char	*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
 	format = ft_parse_precision(format, arg, spec);
 	format = ft_parse_size(format, spec);
 	format = ft_handle_conversion(format, arg, spec);
-	//ft_print_specification(spec);
 	return (format);
 }
 
@@ -64,7 +63,7 @@ int					ft_printf(const char *format, ...)
 	t_arg	spec;
 	int		done;
 
-	if (format == NULL || BUFF_SIZE < 1)
+	if (format == NULL || P_BUFF_SIZE < 1)
 		return (-1);
 	va_start(arg, format);
 	ft_memset(&spec, 0, sizeof(spec));

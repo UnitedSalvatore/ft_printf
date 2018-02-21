@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:41:15 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/17 17:38:37 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 00:47:50 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 void		ft_add_to_buf(const char c, struct s_buffer *buffer)
 {
-	buffer->buf[buffer->size] = c;
-	++buffer->size;
-	//ft_putstr(ft_uitoa_base((unsigned char)c, 2));
-	//ft_putstr("\n");
+	buffer->buf[buffer->size++] = c;
 	if (buffer->size == P_BUFF_SIZE)
 	{
 		write(STDOUT_FILENO, buffer->buf, buffer->size);

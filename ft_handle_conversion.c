@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:32:20 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 02:11:49 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 14:13:38 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 static t_handler	ft_get_handler(t_handler handlers[], int num)
 {
-	handlers[0] = 0;
-	handlers[1] = 0;
-	handlers[2] = 0;
+	handlers[0] = &ft_handle_string;
+	handlers[1] = &ft_handle_wstring;
+	handlers[2] = &ft_handle_pointer;
 	handlers[3] = &ft_handle_int;
-	handlers[4] = 0;
+	handlers[4] = &ft_handle_int;
 	handlers[5] = &ft_handle_int;
-	handlers[6] = 0;
-	handlers[7] = 0;
-	handlers[8] = 0;
-	handlers[9] = 0;
-	handlers[10] = 0;
-	handlers[11] = 0;
+	handlers[6] = &ft_handle_o;
+	handlers[7] = &ft_handle_o;
+	handlers[8] = &ft_handle_u;
+	handlers[9] = &ft_handle_u;
+	handlers[10] = &ft_handle_x;
+	handlers[11] = &ft_handle_x;
 	handlers[12] = &ft_handle_char;
-	handlers[13] = &ft_handle_char;
+	handlers[13] = &ft_handle_wchar;
 	handlers[14] = &ft_handle_char;
 	return (handlers[num]);
 }
@@ -50,9 +50,7 @@ const char			*ft_handle_conversion(
 		if (ft_strchr("DOUCS", *format))
 			spec->size = L;
 		handler = ft_get_handler(handlers, conversion_char - conversion_str);
-// Убери нахер эту проверку, как доделаешь, чмоки :*
-		if (handler)
-			handler(format, arg, spec);
+		handler(format, arg, spec);
 		++format;
 	}
 	return (format);

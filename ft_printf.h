@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 01:27:34 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 11:10:49 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,20 @@ typedef struct		s_num
 {
 	char			sign;
 	char			*prefix;
-	int				base;
-	int				big_char;
+	unsigned int	base;
+	const char		*digits;
 }					t_num;
 
 typedef struct		s_arg
 {
-	int				minus : 1;
-	int				zero : 1;
-	int				plus : 1;
-	int				space : 1;
-	int				hash : 1;
+	unsigned int	minus : 1;
+	unsigned int	zero : 1;
+	unsigned int	plus : 1;
+	unsigned int	space : 1;
+	unsigned int	hash : 1;
 	\
 	int				min_width;
-	int				is_precision : 1;
+	unsigned int	is_precision : 1;
 	int				precision;
 	enum e_size		size;
 	\
@@ -61,7 +61,6 @@ typedef void		(*t_handler)(const char *, va_list*, t_arg*);
 int					ft_printf(const char *format, ...);
 void				ft_add_to_buf(const char c, struct s_buffer *buffer);
 void				ft_put_width(int data_size, t_arg *spec);
-void				ft_handle_num(t_arg *spec, uintmax_t num, t_num *prop);
 
 const char			*
 ft_parse_flags(const char *format, t_arg *spec);
@@ -76,7 +75,21 @@ ft_handle_conversion(const char *format, va_list *arg, t_arg *spec);
 
 void				ft_handle_char(
 						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_wchar(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_string(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_wstring(
+						const char *format, va_list *arg, t_arg *spec);
 void				ft_handle_int(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_o(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_u(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_x(
+						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_pointer(
 						const char *format, va_list *arg, t_arg *spec);
 
 #endif

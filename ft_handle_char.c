@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 02:12:44 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 02:11:35 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/21 05:17:07 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_putwchar(wchar_t c, struct s_buffer *buffer)
 	}
 }
 
-static void	ft_handle_wchar(const char *format, va_list *arg, t_arg *spec)
+void		ft_handle_wchar(const char *format, va_list *arg, t_arg *spec)
 {
 	wchar_t	c;
 	int		len;

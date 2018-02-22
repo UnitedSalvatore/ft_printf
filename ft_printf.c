@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 00:26:38 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/22 20:37:24 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,19 @@ static t_arg		*ft_default_arg(t_arg *spec)
 
 static const char	*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
 {
-	format = ft_parse_flags(format, spec);
-	format = ft_parse_min_width(format, arg, spec);
-	format = ft_parse_precision(format, arg, spec);
-	format = ft_parse_size(format, spec);
+	while (*format)
+	{
+		if (ft_strchr("-0+ #", *format))
+			format = ft_parse_flags(format, spec);
+		else if (*format == '*' || ft_isdigit(*format))
+			format = ft_parse_min_width(format, arg, spec);
+		else if (*format == '.')
+			format = ft_parse_precision(format, arg, spec);
+		else if (ft_strchr("hljz", *format))
+			format = ft_parse_size(format, spec);
+		else
+			break;
+	}
 	format = ft_handle_conversion(format, arg, spec);
 	return (format);
 }

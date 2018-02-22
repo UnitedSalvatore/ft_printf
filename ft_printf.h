@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 11:10:49 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/22 17:01:34 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <string.h>
 
 # define P_BUFF_SIZE 64
-# define MIN_WIDTH
 
 enum				e_size
 {
@@ -36,8 +35,8 @@ typedef struct		s_num
 {
 	char			sign;
 	char			*prefix;
-	unsigned int	base;
 	const char		*digits;
+	unsigned int	base;
 }					t_num;
 
 typedef struct		s_arg
@@ -89,7 +88,11 @@ void				ft_handle_u(
 						const char *format, va_list *arg, t_arg *spec);
 void				ft_handle_x(
 						const char *format, va_list *arg, t_arg *spec);
-void				ft_handle_pointer(
+void				ft_handle_p(
 						const char *format, va_list *arg, t_arg *spec);
+void				ft_handle_num(
+						t_arg *spec, uintmax_t num, t_num *prop);
+void				ft_handle_unum(
+						t_arg *spec, uintmax_t num, t_num *prop);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:32:20 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 14:13:38 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/22 19:45:36 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_handler	ft_get_handler(t_handler handlers[], int num)
 {
 	handlers[0] = &ft_handle_string;
 	handlers[1] = &ft_handle_wstring;
-	handlers[2] = &ft_handle_pointer;
+	handlers[2] = &ft_handle_p;
 	handlers[3] = &ft_handle_int;
 	handlers[4] = &ft_handle_int;
 	handlers[5] = &ft_handle_int;
@@ -40,17 +40,27 @@ const char			*ft_handle_conversion(
 )
 {
 	const char	conversion_str[] = "sSpdDioOuUxXcC%";
-	const char	*conversion_char;
+	const char	*conversion_chr;
 	t_handler	handlers[15];
 	t_handler	handler;
 
-	conversion_char = ft_strchr(conversion_str, *format);
-	if (conversion_char && *conversion_char)
+	if (*format)
 	{
-		if (ft_strchr("DOUCS", *format))
-			spec->size = L;
-		handler = ft_get_handler(handlers, conversion_char - conversion_str);
-		handler(format, arg, spec);
+		if ((conversion_chr = ft_strchr(conversion_str, *format)))
+		{
+			if (ft_strchr("DOUCS", *format))
+				spec->size = L;
+			handler = ft_get_handler(handlers, conversion_chr - conversion_str);
+			handler(format, arg, spec);
+		}
+		else
+		{
+			if (spec->min_width && !spec->minus)
+				ft_put_width(sizeof(char), spec);
+			ft_add_to_buf(*format, &spec->buffer);
+			if (spec->min_width && spec->minus)
+				ft_put_width(sizeof(char), spec);
+		}
 		++format;
 	}
 	return (format);

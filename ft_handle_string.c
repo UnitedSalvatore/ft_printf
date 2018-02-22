@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 05:06:57 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 13:24:51 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/22 17:23:31 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void			ft_handle_wstring(const char *format, va_list *arg, t_arg *spec)
 	size_t	strlen;
 	size_t	i;
 
+	i = 0;
 	str = va_arg(*arg, wchar_t *);
 	if (!str)
 		str = L"(null)";
@@ -87,7 +88,7 @@ void			ft_handle_wstring(const char *format, va_list *arg, t_arg *spec)
 		strlen = ft_wstrlen(str);
 	if (spec->min_width && !spec->minus)
 		ft_put_width(strlen, spec);
-	while (*str && (i += ft_wcharlen(*str)) < strlen)
+	while (*str && (i += ft_wcharlen(*str)) <= strlen)
 		ft_putwchar(*str++, &spec->buffer);
 	if (spec->min_width && spec->minus)
 		ft_put_width(strlen, spec);

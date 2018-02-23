@@ -6,14 +6,11 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 04:09:11 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 20:53:22 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:12:31 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <stdarg.h>
 #include "ft_printf.h"
-#include "libft.h"
 
 static uintmax_t	ft_get_size(va_list *arg, enum e_size *size)
 {
@@ -41,17 +38,13 @@ void				ft_handle_o(const char *format, va_list *arg, t_arg *spec)
 	uintmax_t	unbr;
 	t_num		prop;
 
+	(void)format;
 	unbr = ft_get_size(arg, &spec->size);
 	prop.sign = '\0';
-	if (spec->hash && (unbr || (!unbr && spec->is_precision && !spec->precision)))
-		prop.prefix = "0";
-	else
-		prop.prefix = "";
+	prop.prefix = "";
 	prop.base = 8;
 	prop.digits = "01234567";
-	if (spec->is_precision)
-		spec->zero = 0;
-	ft_handle_unum(spec, unbr, &prop);
+	ft_handle_num(spec, unbr, &prop);
 }
 
 void				ft_handle_u(const char *format, va_list *arg, t_arg *spec)
@@ -59,14 +52,13 @@ void				ft_handle_u(const char *format, va_list *arg, t_arg *spec)
 	uintmax_t	unbr;
 	t_num		prop;
 
+	(void)format;
 	unbr = ft_get_size(arg, &spec->size);
 	prop.sign = '\0';
 	prop.prefix = "";
 	prop.base = 10;
 	prop.digits = "0123456789";
-	if (spec->is_precision)
-		spec->zero = 0;
-	ft_handle_unum(spec, unbr, &prop);
+	ft_handle_num(spec, unbr, &prop);
 }
 
 void				ft_handle_x(const char *format, va_list *arg, t_arg *spec)
@@ -90,9 +82,7 @@ void				ft_handle_x(const char *format, va_list *arg, t_arg *spec)
 	else
 		prop.digits = "0123456789abcdef";
 	prop.base = 16;
-	if (spec->is_precision)
-		spec->zero = 0;
-	ft_handle_unum(spec, unbr, &prop);
+	ft_handle_num(spec, unbr, &prop);
 }
 
 void				ft_handle_p(const char *format, va_list *arg, t_arg *spec)
@@ -100,12 +90,11 @@ void				ft_handle_p(const char *format, va_list *arg, t_arg *spec)
 	uintmax_t	unbr;
 	t_num		prop;
 
+	(void)format;
 	unbr = (uintmax_t)va_arg(*arg, void *);
 	prop.sign = '\0';
 	prop.prefix = "0x";
 	prop.digits = "0123456789abcdef";
 	prop.base = 16;
-	if (spec->is_precision)
-		spec->zero = 0;
-	ft_handle_unum(spec, unbr, &prop);
+	ft_handle_num(spec, unbr, &prop);
 }

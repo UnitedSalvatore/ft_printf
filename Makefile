@@ -19,7 +19,7 @@ SOURCES = $(addprefix ./, $(FILENAMES))
 OBJECTS = $(addprefix ./obj/, $(FILENAMES:.c=.o))
 
 CC = gcc
-FLAGS ?= -g #-Wall -Wextra -Werror #-Wconversion
+FLAGS ?= -Wall -Wextra -Werror
 FLAGS += -I./libft/
 
 all: $(NAME)
@@ -45,8 +45,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-main: $(NAME)
-	$(CC) $(FLAGS) main.c $(NAME) $(LIBFT)
 
 .PHONY: all clean fclean re

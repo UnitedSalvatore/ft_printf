@@ -6,12 +6,12 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:32:20 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 19:45:36 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:07:50 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
+#include "../libft/libft.h"
 
 static t_handler	ft_get_handler(t_handler handlers[], int num)
 {

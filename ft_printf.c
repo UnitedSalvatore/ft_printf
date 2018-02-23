@@ -6,14 +6,13 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 00:03:07 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 20:37:24 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:17:52 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <unistd.h>
 #include "ft_printf.h"
-#include "libft.h"
+#include "../libft/libft.h"
 
 static t_arg		*ft_default_arg(t_arg *spec)
 {
@@ -23,8 +22,7 @@ static t_arg		*ft_default_arg(t_arg *spec)
 	spec->space = 0;
 	spec->hash = 0;
 	spec->min_width = 0;
-	spec->is_precision = 0;
-	spec->precision = 0;
+	spec->precision = -1;
 	spec->size = NONE;
 	return (spec);
 }
@@ -42,7 +40,7 @@ static const char	*ft_parse_arg(const char *format, va_list *arg, t_arg *spec)
 		else if (ft_strchr("hljz", *format))
 			format = ft_parse_size(format, spec);
 		else
-			break;
+			break ;
 	}
 	format = ft_handle_conversion(format, arg, spec);
 	return (format);

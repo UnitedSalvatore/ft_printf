@@ -6,7 +6,7 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 01:07:42 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 17:01:34 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:21:07 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct		s_arg
 	unsigned int	hash : 1;
 	\
 	int				min_width;
-	unsigned int	is_precision : 1;
 	int				precision;
 	enum e_size		size;
 	\
@@ -91,8 +90,6 @@ void				ft_handle_x(
 void				ft_handle_p(
 						const char *format, va_list *arg, t_arg *spec);
 void				ft_handle_num(
-						t_arg *spec, uintmax_t num, t_num *prop);
-void				ft_handle_unum(
 						t_arg *spec, uintmax_t num, t_num *prop);
 
 #endif

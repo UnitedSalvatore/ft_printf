@@ -6,11 +6,10 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 02:12:44 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/21 05:17:07 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:09:41 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <wchar.h>
 #include "ft_printf.h"
 

@@ -6,13 +6,12 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 21:32:34 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 20:25:55 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:16:32 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "ft_printf.h"
-#include "libft.h"
+#include "../libft/libft.h"
 
 const char	*ft_parse_flags(const char *format, t_arg *spec)
 {
@@ -45,19 +44,21 @@ const char	*ft_parse_min_width(const char *format, va_list *arg, t_arg *spec)
 		++format;
 	}
 	else
+	{
+		spec->min_width = 0;
 		while (ft_isdigit(*format))
 			spec->min_width = spec->min_width * 10 + (*format++ - '0');
+	}
 	return (format);
 }
 
 const char	*ft_parse_precision(const char *format, va_list *arg, t_arg *spec)
 {
-	spec->is_precision = 1;
 	if (*++format == '*')
 	{
 		spec->precision = va_arg(*arg, int);
 		if (spec->precision < 0)
-			spec->is_precision = 0;
+			spec->precision = -1;
 		++format;
 	}
 	else

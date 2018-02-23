@@ -6,12 +6,10 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 18:18:22 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 16:10:10 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:11:26 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <stdarg.h>
 #include "ft_printf.h"
 
 static intmax_t	ft_get_size(va_list *arg, enum e_size *size)
@@ -41,6 +39,7 @@ void			ft_handle_int(const char *format, va_list *arg, t_arg *spec)
 	t_num		prop;
 	uintmax_t	unbr;
 
+	(void)format;
 	nbr = ft_get_size(arg, &spec->size);
 	prop.sign = '\0';
 	if (spec->plus)
@@ -54,10 +53,8 @@ void			ft_handle_int(const char *format, va_list *arg, t_arg *spec)
 		unbr = -nbr;
 		prop.sign = '-';
 	}
-	prop.prefix = NULL;
+	prop.prefix = "";
 	prop.base = 10;
 	prop.digits = "0123456789";
-	if (spec->is_precision)
-		spec->zero = 0;
 	ft_handle_num(spec, unbr, &prop);
 }

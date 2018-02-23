@@ -6,14 +6,13 @@
 /*   By: ypikul <ypikul@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 05:06:57 by ypikul            #+#    #+#             */
-/*   Updated: 2018/02/22 17:23:31 by ypikul           ###   ########.fr       */
+/*   Updated: 2018/02/23 06:14:40 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <wchar.h>
 #include "ft_printf.h"
-#include "libft.h"
+#include "../libft/libft.h"
 
 static void		ft_putwchar(wchar_t c, struct s_buffer *buffer)
 {
@@ -56,10 +55,10 @@ static size_t	ft_wstrlen(wchar_t *str)
 			i += 4;
 		++str;
 	}
-		return (i);
+	return (i);
 }
 
-static size_t		ft_wcharlen(wchar_t c)
+static size_t	ft_wcharlen(wchar_t c)
 {
 	if (c <= 0x7F)
 		return (1);
@@ -75,23 +74,23 @@ static size_t		ft_wcharlen(wchar_t c)
 void			ft_handle_wstring(const char *format, va_list *arg, t_arg *spec)
 {
 	wchar_t	*str;
-	size_t	strlen;
+	size_t	length;
 	size_t	i;
 
+	(void)format;
 	i = 0;
 	str = va_arg(*arg, wchar_t *);
 	if (!str)
 		str = L"(null)";
-	if (spec->is_precision)
-		strlen = spec->precision;
-	else
-		strlen = ft_wstrlen(str);
+	length = ft_wstrlen(str);
+	if (spec->precision >= 0 && (int)length > spec->precision)
+		length = spec->precision;
 	if (spec->min_width && !spec->minus)
-		ft_put_width(strlen, spec);
-	while (*str && (i += ft_wcharlen(*str)) <= strlen)
+		ft_put_width(length, spec);
+	while (*str && (i += ft_wcharlen(*str)) <= length)
 		ft_putwchar(*str++, &spec->buffer);
 	if (spec->min_width && spec->minus)
-		ft_put_width(strlen, spec);
+		ft_put_width(length, spec);
 }
 
 void			ft_handle_string(const char *format, va_list *arg, t_arg *spec)
@@ -100,13 +99,14 @@ void			ft_handle_string(const char *format, va_list *arg, t_arg *spec)
 	size_t	length;
 	size_t	i;
 
+	(void)format;
 	if (spec->size == L)
 		return (ft_handle_wstring(format, arg, spec));
 	str = va_arg(*arg, char *);
 	if (!str)
 		str = "(null)";
 	length = ft_strlen(str);
-	if (spec->is_precision && (int)length > spec->precision)
+	if (spec->precision >= 0 && (int)length > spec->precision)
 		length = spec->precision;
 	if (spec->min_width && !spec->minus)
 		ft_put_width(length, spec);
